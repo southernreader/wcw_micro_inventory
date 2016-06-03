@@ -59,6 +59,6 @@ stage 'docker build'
 
  
  stage 'notifyKubernetes'
-   sh  "curl -H 'Content-Type: application/json' -X POST -d '{'id': 'wcw-inv','application': 'Warehouse Application','accesspoint': 'http://172.31.0.233:8080','containers': [{'name': 'mongod', 'replicas': 1, 'cpu': 1100, 'memory': '170M', 'port': 30071},        {'name': 'nodejs', 'replicas': 1, 'cpu': 1100, 'memory': '500M', 'port': 30064, 'image': 'snyamars007/node_inventory'} ]}' http://54.174.70.178:3306/step3"
+  // sh  "curl -H 'Content-Type: application/json' -X POST -d '{'id': 'wcw-inv','application': 'Warehouse Application','accesspoint': 'http://172.31.0.233:8080','containers': [{'name': 'mongod', 'replicas': 1, 'cpu': 1100, 'memory': '170M', 'port': 30071},        {'name': 'nodejs', 'replicas': 1, 'cpu': 1100, 'memory': '500M', 'port': 30064, 'image': 'snyamars007/node_inventory'} ]}' http://54.174.70.178:3306/step3"
  
 }//end of node
