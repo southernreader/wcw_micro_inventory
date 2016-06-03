@@ -54,7 +54,7 @@ node {
 stage 'docker build'
   
   docker.withRegistry('https://hub.docker.com/r/snyamars007/prowi/', 'f6ab1d37-c2cf-4636-80b9-7745dffd4695') {
-        docker.build('snyamars007/prowi').push('latest')
+        docker.build('snyamars007/node_inventory').push('latest')
   }
 
  
