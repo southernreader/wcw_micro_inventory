@@ -60,7 +60,8 @@ stage 'docker build'
   
   docker.withRegistry('https://hub.docker.com/r/snyamars007/prowi/', 'f6ab1d37-c2cf-4636-80b9-7745dffd4695') {
         def pcImg = docker.build('snyamars007/node_inventory')
-        pcImg.push();
+        //pcImg.push();
+        sh ("docker push snyamars007/node_inventory")
   }
 
   
