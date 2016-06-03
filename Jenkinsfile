@@ -53,15 +53,17 @@ node {
   
 stage 'docker build'
   
-  withDockerRegistry([credentialsId: 'f6ab1d37-c2cf-4636-80b9-7745dffd4695', url: 'https://hub.docker.com/r/snyamars007/']) {
-    step([$class: 'DockerBuilderPublisher', cleanImages: true, cleanupWithJenkinsJobDelete: false, dockerFileDirectory: '.', pushOnSuccess: true, tagsString: 'latest'])
-   }
+  //withDockerRegistry([credentialsId: 'f6ab1d37-c2cf-4636-80b9-7745dffd4695', url: 'https://hub.docker.com/r/snyamars007/']) {
+    //step([$class: 'DockerBuilderPublisher', cleanImages: true, cleanupWithJenkinsJobDelete: false, dockerFileDirectory: '.', pushOnSuccess: true, tagsString: 'latest'])
+   //}
 
   
-  //docker.withRegistry('https://hub.docker.com/r/snyamars007/prowi/', 'f6ab1d37-c2cf-4636-80b9-7745dffd4695') {
-    //    docker.build('snyamars007/node_inventory').push('latest')
-  //}
+  docker.withRegistry('https://hub.docker.com/r/snyamars007/prowi/', 'f6ab1d37-c2cf-4636-80b9-7745dffd4695') {
+        def pcImg = docker.build('snyamars007/node_inventory')
+        pcImg.push();
+  }
 
+  
  
  stage 'notifyKubernetes'
   // sh  "curl -H 'Content-Type: application/json' -X POST -d '{'id': 'wcw-inv','application': 'Warehouse Application','accesspoint': 'http://172.31.0.233:8080','containers': [{'name': 'mongod', 'replicas': 1, 'cpu': 1100, 'memory': '170M', 'port': 30071},        {'name': 'nodejs', 'replicas': 1, 'cpu': 1100, 'memory': '500M', 'port': 30064, 'image': 'snyamars007/node_inventory'} ]}' http://54.174.70.178:3306/step3"
