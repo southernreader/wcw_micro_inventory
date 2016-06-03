@@ -13,7 +13,7 @@ node {
    // **       in the global configuration.           
    //def mvnHome = tool 'Maven'
 
-   // Mark the code build 'stage'....
+   // Mark the code build 'stage'.....
    stage 'Build'
    //set the version
    //sh "${mvnHome}/bin/mvn versions:set -DnewVersion=1.0.${env.BUILD_NUMBER}"
