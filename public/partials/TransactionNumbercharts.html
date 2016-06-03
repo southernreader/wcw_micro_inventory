@@ -1,0 +1,118 @@
+<div>
+	<div class="superheading">  &nbsp &nbsp UBS Post-Trade Services Portal<p></div>
+
+
+<!-- 
+<div class="heading"><font size="3"></font><p></div>
+<div class="heading"><font size="3"></font><p></div> -->
+<div style="overflow-y: hidden; ">
+<div class="summary-table" >
+<div class="superheading1">Streamline your Post Trade Process<p></div>
+		<!-- <div class="heading"><font size="2">Cash Equities  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp  Business Date: <p></div> -->
+		<div class="heading"><font size="3"> Cash Equities : &nbsp; &nbsp; &nbsp;  US Domestic / International <span style="float:right;">Business Date: Oct-12-2015</span>  <p></div>
+
+
+	<table class="table table-condensed">
+		<thead>
+			<th>My Tasks</th>
+			<th>Complete by</th>
+			<th>Nos</th>
+		</thead>
+		<tbody>
+			
+			<tr class="info">
+			<td>Outstanding Trades - All Tasks below</td>
+			<td>Oct-14-2015</td>
+			<td>8</td>
+			</tr>
+			<tr class="info">
+			<td>Trades pending Match - UBS Notice of Executions received</td>
+			<td>Oct-12-2015</td>
+			<td>{{tasks1.length}}</td>
+			</tr>
+			<tr class="info">
+			<td>Trades pending Affirmation - UBS Confirms issued </td>
+			<td>Oct-13-2015</td>
+			<td>{{tasks2.length}}</td>
+			</tr>
+			<tr class="info">
+			<td>Trades pending Account Allocation - A/c Nos not provided to UBS</td>
+			<td>Oct-12-2015</td>
+			<td>{{tasks3.length}}</td>
+			</tr>
+			<tr class="info">
+			<td>Settlement Instructions (SSI) unmatched</td>
+			<td>Oct-14-2015</td>
+			<td>{{tasks4.length}}</td>
+			</tr>
+			<tr class="info">
+			<td>Tasks by Value - > 0.5 Mn USD</td>
+			<td></td>
+			<td>0</td>
+			</tr>
+			<tr class="info">
+			<td>Tasks by Value - > .25 Mn to 0.5 Mn USD</td>
+			<td></td>
+			<td>4</td>
+			</tr>
+			<tr class="info">
+			<td>Tasks by Value - > 0.10 Mn to 0.25 Mn USD</td>
+			<td></td>
+			<td>2</td>
+			</tr>
+			<tr class="info">
+			<td>Tasks by Value - >0.05 Mn to 0.25 Mn USD</td>
+			<td></td>
+			<td>2</td>
+			</tr>
+		</tbody>
+
+
+			<!-- <tbody>
+						<tr class="info" ng-repeat="task in tasks">
+							<td>{{task.value}}</td>
+							<td>{{task.date}}</td>
+							<td>{{tasks.length}}</td>						
+						</tr>
+			</tbody> -->
+	</table>
+
+	<div id="crdrchart" ng-controller="crdrChartController" style="overflow-y: hidden;" >
+		<nvd3-pie-chart
+	        data="crdrData"
+	        id="crdrCharts"
+	        width="250"
+	        height="300"
+	        x="xFunction()"
+	        y="yFunction()"
+	        showLabels="true"
+	        pieLabelsOutside="true"
+	        showValues="false"
+	        labelType="value"
+	        tooltips="true"
+	        showlegend="true">
+	            <svg></svg>
+	    </nvd3-pie-chart>
+    </div>
+	<div id="typechart" ng-controller="typeChartController" ng-show="displaytypechart" style="overflow-y: hidden;">
+<!-- 		<div class="chartheading"><font size="3.5"> &nbsp &nbsp {{crdr_type}} » Transactions by Type</font></div>
+ -->		<nvd3-pie-chart
+	        data="typeData"
+	        id="typeCharts"
+	        width="250"
+	        height="300"
+	        x="xFunction()"
+	        y="yFunction()"
+	        showLabels="true"
+	        pieLabelsOutside="true"
+	        showValues="false"
+	        labelType="value"
+	        tooltips="true"
+	        showlegend="true">
+	            <svg></svg>
+	    </nvd3-pie-chart>
+    </div>
+    </div>
+    
+</div>
+</div>

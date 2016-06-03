@@ -1,0 +1,42 @@
+<div class="chartsheading"><font size="4.5"> &nbsp &nbsp Savings Account Transactions</font></div>
+<div>
+	
+	<div id="crdrchart" ng-controller="crdrvChartController">
+			<div class="chartheading"><font size="3.5"> &nbsp &nbsp &nbsp &nbsp Total Number of Transactions</font></div>
+		<nvd3-pie-chart
+	        data="crdrData"
+	        id="crdrCharts"
+	        width="400"
+	        height="500"
+	        x="xFunction()"
+	        y="yFunction()"
+	        showLabels="true"
+	        pieLabelsOutside="true"
+	        showValues="false"
+	        labelType="value"
+	        tooltips="true"
+	        showlegend="true">
+	            <svg></svg>
+	    </nvd3-pie-chart>
+    </div>
+	<div id="typechart" ng-controller="typevChartController" ng-show="displaytypechart">
+		<div class="chartheading"><font size="3.5"> &nbsp &nbsp {{crdr_type}} » Transactions by Value</font></div>
+		<nvd3-pie-chart
+	        data="typeData"
+	        id="typeCharts"
+	        width="400"
+	        height="500"
+	        x="xFunction()"
+	        y="yFunction()"
+	        showLabels="true"
+	        pieLabelsOutside="true"
+	        showValues="false"
+	        labelType="value"
+	        tooltips="true"
+            tooltipcontent="pietoolTipContentFunction()"
+            showlegend="true">
+	            <svg></svg>
+	    </nvd3-pie-chart>
+    </div>
+    
+</div>

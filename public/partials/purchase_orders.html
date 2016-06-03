@@ -1,0 +1,177 @@
+<div>
+<div class = "ministatement">
+	<div class="col-md-10">
+		<fieldset class="fldset-class">
+		<legend class="legend-class">Search Criteria</legend>
+	
+		<table class="table">
+			<tr>
+				<td style="width:227px" tooltip="{{(facilityname)?'Facility Name' : ''}}" tooltip-append-to-body = "true"   class="tooltip.top"> 
+					<input id="facility_name" class="form-control" placeholder="Facitily Name" ng-keyup="complete1()" 
+						ng-model ="facilityname" autofocus/>
+				</td>
+				<td style="width:227px" tooltip="{{(po)?'Purchase Order' : ''}}" tooltip-append-to-body = "true" class="tooltip.top"> 
+					<input id="purchase_order" class="form-control" placeholder="PO No" ng-keyup="complete1()" 
+					ng-model ="po"
+					autofocus/>
+				</td>
+				<td style="width:227px" tooltip="{{(suprefno)?'Customer Order Ref' : ''}}" tooltip-append-to-body = "true" >
+					<input id="supplier" class="form-control" placeholder ="Supplier ref no" ng-keyup="complete2()" 
+					ng-model ="suprefno"/>
+				</td>
+			<!--	<td  tooltip="{{(buyer)?'Customer ID' : ''}}" tooltip-append-to-body = "true" > <input id="buyer" class="form-control" placeholder="Buyer" ng-keyup="complete3()" 
+					ng-model ="buyer"/> -->
+				</td>
+				<td style="width:227px" tooltip="{{(poStatus)?'PO Status' : ''}}" tooltip-append-to-body = "true" > 
+					<select class="form-control" name="poStatus" ng-model="poStatus" >
+						 <option style="display: " value=""> Select PO Status </option>
+			      		 <option ng-repeat="option1 in data1.availablePurchaseOrder" value="{{option1.id}}">{{option1.name}}</option>
+			   		 </select>	
+				</td>
+				<td style="width:227px" class="tdre" tooltip="{{(item)?'Item ID' : ''}}" tooltip-append-to-body = "true" ><input id="item_status" class="form-control" placeholder="Item ID" ng-keyup="complete3()" 
+					ng-model ="item"
+					/>
+				</td>
+			</tr>
+		
+			<tr>
+				
+				
+				<td style="width:227px" class="tdre"  tooltip="{{(poFilterOption)?'Filter Options':''}}" tooltip-append-to-body = "true" > 
+				<select class="form-control" name="poFilterOption" ng-model="poFilterOption"
+				ng-options="option2.id as option2.name for option2 in data2.availableFilterOptions" ng-change = "reset()" >
+				<option  value="">Select Filter Option</option> 
+				<option ng-repeat="option2 in data2.availableFilterOptions" value="{{option2.id}}"  ng-change="getwarehouseorders(null)">{{option2.name}}</option> 
+				</select>
+               
+				</td>
+
+				<td style="width:227px" class="tdre"  tooltip="{{(filter_Value)?'Filter Value':''}}" tooltip-append-to-body = "true" >
+
+				<input type="text" class="form-control" id="item_status" placeholder="Value" 
+				ng-model ="filter_Value" 
+				ng-disabled="poFilterOption== null"/>			
+				
+				<!--<select class="form-control" id="item_status" placeholder="Enter Yes or No"
+				ng-model ="filter_Value" ng-show="itemStatusShow('yesno')"
+				ng-disabled="data2.singleSelect2 == null" ng-options="op.id as op.name for op in data3.selectoptions" >
+				<option value="">Select YES or NO</option>
+			
+				</select> -->
+
+				<p class="input-group" tooltip="{{(dt)?'From Date':''}}" tooltip-append-to-body = "true" ng-show="itemStatusShow('date')">
+				<input type="text" class="form-control" datepicker-popup="{{format}}" container="body" ng-model="dt" is-open="opened1" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" 
+				placeholder ="From Date"/> 
+				<span class="input-group-btn">
+				<button type="button" class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+				</p>
+
+				</td>
+
+				<td style="width:227px" class="tdcal"   > 
+				<p class="input-group" tooltip="{{(dt2)?'To Date':''}}" tooltip-append-to-body = "true" ng-show="itemStatusShow('date')">
+				<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt2" is-open="opened2" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions"  date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" 
+				placeholder ="To Date"/> 
+				<span class="input-group-btn">
+				<button type="button" class="btn btn-default" ng-click="open2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+				</p>
+      
+				</td>
+				<td style="width:227px"></td>
+				
+				<td style="width:227px" class="tdcal" > 
+				
+			<!--	<button class="btn btn-secondary" type="submit" ng-click ="getwarehouseorders(null)">Go</button> -->
+				<span class="order-btn-alert" ng-click = "getwarehousepurchaseorders(null)" >Go</span>
+				</td>
+			
+				
+					
+			</tr>					
+		</table>
+		<div ng-show="poOrderFilterFormEmpty" class="alert alert-danger alert-dismissible" role="alert">
+<!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+<p>Please enter filter values</p>
+</div>
+		</fieldset>
+		<div id="scroll-section1">
+		<!--	<div id="credit" class="element-bottomshadow reading-box"> -->
+				<div class="superheading2">Purchase Orders</div>
+				<table class="fixed-header table-condensed sales-table">
+					<thead>
+						<tr>
+							<th><b>WH/Store</th>
+							<th><b>PO Nbr</th>
+							<th><b>Supplier</th>
+							<th><b>Buyer</th>
+							<th><b>PO Status</th>
+							<th><b>Expected Delivery Date</th>
+							<th><b>Date Received</th>
+							<th><b>PO Type</th>
+							<th><b>PO Comments</th>
+						</tr>
+					</thead>
+					<tbody>						
+						    <tr ng-repeat="transaction in purchaseorder | orderBy:'instance.Facility_Name'| orderBy:'instance.PO_Nbr'" ng-mouseover="displayorderline(transaction.instance.PO_Nbr)" 
+						    	ng-style="transaction.instance.myStyle">
+								<td style="text-align:center;">{{transaction.instance.Facility_Name}}-{{transaction.instance.Facility_Description}}</td>
+								<td style="text-align:center;"><a ng-click = "gotopurchaseordertransactions(transaction.instance.PO_Nbr)"><b>{{transaction.instance.PO_Nbr}}</a></td>
+								<td style="text-align:center;">{{transaction.instance.SUP_ORDER_NBR}}</td>
+								<td style="text-align:center;">{{transaction.instance.Buyer}}</td>
+								<td style="text-align:center;">{{transaction.instance.PO_Status}}</td>
+								<td style="text-align:center;">{{transaction.instance.Partial_Ship}}</td>
+								<td style="text-align:center;">{{transaction.instance.Received_Date}}</td>	
+								<td style="text-align:center;">{{transaction.instance.PO_Type}}</td>
+								<td style="text-align:center;">{{transaction.instance.PO_Comments}}</td>
+								<!--<td style="text-align:center;">{{transaction.instance.Service_Level}}</td>-->
+							</tr>
+					</tbody>
+				</table>
+		<!--	</div>-->
+		</div>
+		<div id="scroll-section1">
+		<!--	<div id="credit" class="element-bottomshadow reading-box"> -->
+				<div class="superheading2"> Purchase Order Lines</div>
+				<table class="fixed-header table-condensed order-line">
+					<thead>
+						<tr>
+							<th><b>PO Nbr</th>
+							<th><b>Item</th>
+							<th><b>Requested Qty</th>
+							<th><b>Received Qty</th>
+							<th><b>Received Date</th>
+							<th><b>Ordered Case Pack</th>
+							<th><b>Line Status</th>
+							<th><b>QA</th>
+							<th><b>Putaway</th>
+							<th><b>New Item</th>
+							<th><b>Hot Pick</th>
+							<th><b>Cross Dock</th>
+						
+						</tr>
+					</thead>
+					<tbody>				
+						    <tr ng-repeat="transaction in order_line_item |orderBy:'instance.PO_Nbr'">
+								<td style="text-align:center;">{{selectedorderid}}</td>
+								<td style="text-align:center;"><a ng-click = "gotopurchaseorderlinetransactions(transaction.Item_ID)"><b>{{transaction.Item_ID}}</b></td>
+								<td style="text-align:center;">{{transaction.Requested_QTY}}</td>
+								<td style="text-align:center;">{{transaction.Received_Qty}}</td>
+								<td style="text-align:center;">{{transaction.Received_Date}}</td>
+								<td style="text-align:center;">{{transaction.Ordered_Case_Pack}}</td>	
+								<td style="text-align:center;">{{transaction.Line_Status}}</td>
+								<td style="text-align:center;">{{transaction.QA}}</td>
+								<td style="text-align:center;">{{transaction.Putaway}}</td>
+								<td style="text-align:center;">{{transaction.New_Item}}</td>
+								<td style="text-align:center;">{{transaction.Hot_Pick}}</td>
+								<td style="text-align:center;">{{transaction.Cross_Dock}}</td>
+								
+							</tr>
+					</tbody>
+				</table>
+		<!--	</div> -->
+		</div>
+	</div>
+</div>
+</div>

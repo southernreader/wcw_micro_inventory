@@ -1,0 +1,113 @@
+<div class="header">
+    <div class="container">
+        
+        <!--/.navbar-->
+    </div>
+    <!--/.container-->
+</div>
+<!--/.header-->
+ 
+<div id="africa" class="page-section">
+    <div class="container">
+	<h2>Bank Account Details</h2>
+	<p class="caption">...</p>
+    </div>
+    <!--/.container-->
+</div>
+<!--/#africa-->
+ 
+<div id="antarctica" class="page-section">
+    <div class="container">
+	<h2>Credit Card</h2>
+	<p class="caption">...</p>
+    </div>
+    <!--/.container-->
+</div>
+<!--/#antarctica-->
+ 
+<div id="asia" class="page-section">
+    <div class="container">
+	<h2>Debit Card</h2>
+	<p class="caption">...</p>
+    </div>
+    <!--/.container-->
+</div>
+<!--/#asia-->
+ 
+<div id="australia" class="page-section">
+    <div class="container">
+	<h2>Loan</h2>
+	<p class="caption">...</p>
+    </div>
+    <!--/.container-->
+</div>
+<!--/#australia-->
+ 
+<div id="europe" class="page-section">
+    <div class="container">
+	<h2>Fixed Deposit</h2>
+	<p class="caption">...</p>
+    </div>
+    <!--/.container-->
+</div>
+<!--/#europe-->
+ 
+<div id="north-america" class="page-section">
+    <div class="container">
+	<h2>Balance</h2>
+	<p class="caption">...</p>
+	<a href="#" class="scroll-top back-to-top">↑</a>
+    </div>
+    <!--/.container-->
+</div>
+<!--/#north-america-->
+ 
+<div id="south-america" class="page-section">
+    <div class="container">
+	<h2>Statement</h2>
+	<p class="caption">...</p>
+    </div>
+    <!--/.container-->
+</div>
+<!--/#south-america-->
+
+<link rel="stylesheet" href="stylesheets/style.css"></link>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	// navigation click actions	
+	$('.scroll-link').on('click', function(event){
+		event.preventDefault();
+		var sectionID = $(this).attr("data-id");
+		scrollToID('#' + sectionID, 750);
+	});
+	// scroll to top action
+	$('.scroll-top').on('click', function(event) {
+		event.preventDefault();
+		$('html, body').animate({scrollTop:0}, 'slow'); 		
+	});
+	// mobile nav toggle
+	$('#nav-toggle').on('click', function (event) {
+		event.preventDefault();
+		$('#main-nav').toggleClass("open");
+	});
+});
+// scroll function
+function scrollToID(id, speed){
+	var offSet = 50;
+	var targetOffset = $(id).offset().top - offSet;
+	var mainNav = $('#main-nav');
+	$('#scroll-section').animate({scrollTop:targetOffset}, speed);
+	if (mainNav.hasClass("open")) {
+		mainNav.css("height", "1px").removeClass("in").addClass("collapse");
+		mainNav.removeClass("open");
+	}
+}
+if (typeof console === "undefined") {
+    console = {
+        log: function() { }
+    };
+}
+</script>

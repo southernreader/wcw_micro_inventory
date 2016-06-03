@@ -1,0 +1,302 @@
+<div class="superheading3"> <span id="tab">Inventory Search </span></div>
+<div class = "ministatement">
+	<div class="col-md-10">
+		<fieldset class="fldset-class">
+		<legend class="legend-class">Search Criteria</legend>
+			<table class="table">
+				<tr>	    
+					<td tooltip="{{(facilityname)?'Facility Name' : ''}}" tooltip-append-to-body = "true"   class="tooltip.top"> 
+						<input id="facility_name" class="form-control" placeholder="Facitily Name" ng-keyup="complete1()" 
+							ng-model ="facilityname"
+							 autofocus/>
+					</td>
+					<td tooltip-append-to-body = "true"> 
+						<input id="item_name"  class="form-control" placeholder ="Item Name" ng-keyup="complete2()" 
+						ng-model ="itemid" tooltip="{{(itemid)?'Item Name' : ''}}"
+						/>
+					</td>
+					<td tooltip="{{(itemstatus)?'Item Status' : ''}}" tooltip-append-to-body = "true" > 
+						<input id="item_status"  class="form-control" placeholder="Item Status" ng-keyup="complete3()" 
+						ng-model ="itemstatus"
+						/>
+					</td>
+					<td> 
+					<select name="singleSelect" class="form-control" ng-model="data.singleSelect" placeholder="Filter Options" ng-change="reset1()">
+				       <option  value="">Select Filter Option</option> 
+					   <option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+				    </select>	
+					</td>
+
+					<td>
+						<input id="item_status"  class="form-control" placeholder="Enter Filter Value" 
+						ng-model ="filter_Value" />
+					</td>
+				</tr>
+				<tr>
+				<td class="info"> 
+				<label class="rb">Warehouse
+					<input type="radio"  name="WHSTORE" class="rb"
+						ng-model ="selected" value="WH" ng-change="filter()"/>
+				</label>
+
+				</td>
+				<td class="info"> 
+				<label class="rb">Store 
+				<input type="radio"  name="WHSTORE" class="rb"
+					ng-model ="selected" value="ST" ng-change="filter()"/>
+				</label>
+				</td>
+				<td class="info"> 
+				<label class="rb">Both 
+				<input type="radio"  name="WHSTORE" class="rb"
+					ng-model ="selected" value="WHST" ng-change="filter()"/>
+				</label>
+
+				</td>
+				<td class=""> 
+					<label class="hotinv" style="color:#F78181">Hot Inventory  </label>
+					<input type="checkbox" ng-model="checked" ng-change="showHotInventory()" id="ng-change-example1" />
+				</td>
+				<td>
+				<button class="btn btn-secondary" type="button" ng-click = "getwarehouseinventory(null)">Go</button>
+				</td>
+				</tr>					
+			</table>
+			<div ng-show="inventoryFilterFormEmpty" class="alert alert-danger" role="alert">
+			<!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+			<p>Please enter filter values</p>
+			</div>
+		</fieldset>
+		<div id="table-responsive">
+			<div id="scroll-section1">
+				<table class="scrollable table-condensed fixed-header inventory-table">
+					<thead>
+						<tr>
+							<th><b>WH/Store</th>
+							<th><b>Item Description</th>
+							<th><b>SOH</th>
+							<th><b>Available</th>
+							<th><b>Hold</th>
+							<th><b>Damaged</th>
+							<th><b>QA</th>
+							<th><b>Alloc</th>
+							<th><b>RCV Stage</th>
+							<th><b>In Transit</th>
+						</tr><carousel class="slides_control" >	
+				
+			<slide ng-repeat="label in secondslides | myFilter " active="slide.active" >	
+			 <table class="table table-condensed ">
+			<!--  <thead >
+						<tr>
+							<th style="text-align: center;"><b>ASN Statsu</th>
+							<th style="text-align: center;"><b>Purchase Orders</th>
+							<th style="text-align: center;"><b>PUTAWAY</th>
+							
+						</tr>
+					</thead>-->
+					<tbody>
+	 <tr>
+	 <td class="info">
+			   <div class="newclass" id={{$index}}>
+     
+		<!--<nvd3-pie-chart
+            data="secondslides[$index ].label"
+            id=sfsf{{$index}}
+            showLabels="true"
+			x="xFunction()"
+            y="yFunction()"
+            donut="true"
+			noData="Data aint here"
+            donutRatio="0.25"
+            donutLabelsOutside="true" 
+			margin ="{left:30,top:0,botttom:0,right:100}"
+			> <svg width="100px" style="width: 400px; height: 200px;" ></svg></nvd3-pie-chart>-->
+			
+			<nvd3 options="pieoptions" data="secondslides[$index ].label"  id=sfsf{{$index}}><svg style="width: 400px; height: 200px;" ></nvd3>
+			
+			<!--<nvd3-pie-chart   data="secondslides[$index ].label" id=static{{$index}} options={{pieoptions.chart.height}}    margin ="{left:0,top:0,botttom:0,right:0}"><svg  style="width: 400px; height: 200px;" ></svg></nvd3-pie-chart>-->
+			
+			<!--<nvd3-sparkline-chart options="options" data="data" margin ="{left:40,top:20,botttom:50,right:150}"><svg  style="width: 400px; height: 200px; "></svg>  </nvd3-sparkline-chart>-->
+			
+			
+	 </div>
+	 </td><td class="info">
+         <div class="newclass">
+      <!--<nvd3-pie-chart
+	       
+	       data="secondslides[$index + 1].label"
+            id=sfsfs{{$index}}
+            showLabels="true"
+            x="xFunction()"
+            y="yFunction()"
+            donut="true"
+            donutRatio="0.25"
+			noData="Data aint here"
+            donutLabelsOutside="true"   
+			margin ="{left:30,top:0,botttom:0,right:100}"
+			>
+               <svg  style="width: 400px; height: 200px; "></svg>  
+         
+    </nvd3-pie-chart>-->
+	<nvd3 options="donutoptions" data="secondslides[$index + 1].label"  id=sfsf{{$index}}><svg style="width: 400px; height: 200px;" ></nvd3>
+	
+	</div></td><td class="info">
+	    <div class="newclass">
+     <!-- <nvd3-pie-chart
+            data="secondslides[$index + 2].label"
+            id=labelsfsf{{$index}}
+            showLabels="true"
+            x="xFunction()"
+            y="yFunction()"
+            donut="true"
+			noData="Data aint here"
+            donutRatio="0.25"
+            donutLabelsOutside="true"   
+			margin ="{left:30,top:0,botttom:0,right:150}"
+			>
+               <svg  style="width: 400px; height: 200px; "></svg>  
+         
+    </nvd3-pie-chart>-->
+	
+	<nvd3 options="donutoptions" data="secondslides[$index + 2].label"  id=sfsf{{$index}}><svg style="width: 400px; height: 200px;" ></nvd3>
+	
+	</div></td>
+	
+	
+	
+	</tr></table>
+	</tbody>
+	      </slide>
+      </carousel>
+      
+	 <carousel class="slides_control" >	
+				
+			<slide ng-repeat="label in secondslides | myFilter " active="slide.active" >	
+	 
+	 <table class="table table-condensed " style="width: 1000px;">
+	<!-- <thead >
+						<tr>
+							<th style="text-align: center;"><b>Reason for Return</th>
+							<th style="text-align: center;"><b>Out of stock</th>
+							<th style="text-align: center;"><b>Perfect Order Rate</th>
+							
+						</tr>
+					</thead>-->
+					<tbody>
+
+	 <tr>
+	 <td class="info"><div class="newclass">
+	   <!--<nvd3-pie-chart
+            data="exampleData"
+            id=label0{{$index}}
+            showLabels="true"
+            x="xFunction()"
+            y="yFunction()"
+   			noData="Data aint here"
+            pieLabelsOutside="true"
+			labelType="percent"
+			showLegends="true"
+			margin ="{left:0,top:0,botttom:0,right:100}"
+			>
+               <svg  style="width: 400px; height: 200px; "></svg>  
+         
+    </nvd3-pie-chart>-->
+	
+	<nvd3 options="pieoptions" data="exampleData"  id=sfsf{{$index}}><svg style="width: 400px; height: 200px;" ></nvd3>
+	</div>
+	 </td>
+	 <td class="info">
+	 <div class="newclass">
+	  <!-- <nvd3-cumulative-line-chart
+            data=cummulativeData[$index].label
+            id=cummulative1{{$index}}
+            x="xCummulativeFunction()"
+            y="yCummulativeFunction()"
+			xAxisTickFormat="xAxisTickFormatFunction()"
+			yAxisTickFormat="yAxisTickFormatFunction()"
+			average="averageCummulative()"
+			staggerLabels="true"
+			showXAxis="true"
+            showYAxis="true"
+			axisLabelDistance= "50"
+			duration="300"
+			clipVoronoi="false"
+			useInteractiveGuideline="true"
+			showLegend="true"
+    			noData="Data aint here"
+           			margin ="{left:50,top:50,botttom:0,right:100}"
+			>
+               <svg  style="width: 400px; height: 200px; "></svg>  
+         
+    </nvd3-cumulative-line-chart>-->
+	
+	<nvd3 options="cummulativeoptions" data="cummulativeData[$index].label" id=cummulative1{{$index}}><svg  style="width: 400px; height: 200px; "></svg>  </nvd3>
+	
+	</div>
+	 </td>
+	 <td class="info">
+	 <div class="newclass">
+	<nvd3 options="options" data="data" ><svg  style="width: 500px; height: 200px; "></svg>  </nvd3>
+	 
+	  <!-- <nvd3-stacked-area-chart
+            data="areachart"
+            id=label{{$index}}
+			showLegend="true"
+			showXAxis="true"
+            showYAxis="true"
+            showLabels="true"
+            x="xAreaFunction()"
+            y="yAreaFunction()"
+            useVoronoi="false"
+            clipEdge="true"
+            duration="100"
+            useInteractiveGuideline="true"
+			noData="Data aint here"
+             enabled="true"
+                    scaleExtent="[1, 10]"
+                    useFixedDomain="false"
+                    useNiceScale="false"
+                    horizontalOff="false"
+                    verticalOff="true"
+                    unzoomEventType='dblclick.zoom'
+			yAxisTickFormat="yAxisTickFormatAreaChart()"
+			xAxisTickFormat="xAxisTickFormatAreaChart()"
+              showLegend="true" 
+			margin ="{left:40,top:20,botttom:0,right:150}"
+			>
+               <svg  style="width: 400px; height: 200px; "></svg>  
+         
+    </nvd3-stacked-area-chart>-->
+	</div>
+	 </td>
+	  </tr>
+	 </tbody>
+	 </table>
+	</slide>
+      </carousel>
+
+					</thead>
+					<tbody>			
+						  <!--  <tr ng-repeat="transaction in inventory" ng-style={{transaction.instance.myStyle}}> -->
+								<tr ng-repeat="transaction in inventory  | orderBy:'instance.Facility_Name'" ng-style={{transaction.instance.myStyle}}>
+								<td style="text-align:center;"><b>{{transaction.instance.Facility_Name}}-{{transaction.instance.Facility_Description}}</td>
+								<td style="text-align:center;"><b>{{transaction.instance.Item_ID}}-{{transaction.instance.Item_Description}}</td>
+								<td style="text-align:center;">
+									<a>
+										<b>{{transaction.instance.SOH}} 
+									</a>
+								</td>
+								<td style="text-align:center;"><u><a ng-click="gototransactions(transaction.instance.Facility_Name,transaction.instance.Item_ID,transaction.instance.Status[0].Status)"><b>{{transaction.instance.Status[0].Qty}}</a></u></td>
+								<td style="text-align:center;"><u><a ng-click="gototransactions(transaction.instance.Facility_Name,transaction.instance.Item_ID,transaction.instance.Status[5].Status)"><b>{{transaction.instance.Status[5].Qty}}</a></u></td>
+								<td style="text-align:center;"><u><a ng-click="gototransactions(transaction.instance.Facility_Name,transaction.instance.Item_ID,transaction.instance.Status[1].Status)"><b>{{transaction.instance.Status[1].Qty}}</a></u></td>
+								<td style="text-align:center;"><u><a ng-click="gototransactions(transaction.instance.Facility_Name,transaction.instance.Item_ID,transaction.instance.Status[3].Status)"><b>{{transaction.instance.Status[3].Qty}}</a></u></td>
+								<td style="text-align:center;"><u><a ng-click="gototransactions(transaction.instance.Facility_Name,transaction.instance.Item_ID,transaction.instance.Status[4].Status)"><b>{{transaction.instance.Status[4].Qty}}</a></u></td>	
+								<td style="text-align:center;"><u><a ng-click="gototransactions(transaction.instance.Facility_Name,transaction.instance.Item_ID,transaction.instance.Status[2].Status)"><b>{{transaction.instance.Status[2].Qty}}</a></u></td>
+								<td style="text-align:center;"><u><a ng-click="gototransactions(transaction.instance.Facility_Name,transaction.instance.Item_ID,transaction.instance.Status[6].Status)"><b>{{transaction.instance.Status[6].Qty}}</a></u></td>
+							</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,68 @@
+<div class="home-container"> 
+
+	<div>
+		<fieldset class="fldset-class">
+		<legend class="legend-class">Visibility</legend>
+		<table>
+			<tr>
+				<td>
+					<a href=" #/Inventory"><span class="order-btn">Inventory</span></a>
+				</td>	
+				<td>
+					<a href="#/Sales Order"><span class="order-btn">Sales Orders</span></a>
+				</td>
+				<td>
+					<a href="#/Purchase Order"><span class="order-btn">Purchase Orders</span></a>
+				</td>
+				<td>
+					<a href="asn.html"><span class="order-btn">ASN</span></a>
+				</td>
+			</tr>
+		</table>	
+		</fieldset>	
+	</div>
+    <div>
+		<fieldset class="fldset-class">
+		<legend class="legend-class">Dashboard</legend>
+		<table>
+			<tr>
+				<td>
+					<a href="#/Dashboard/Alerts and Notifications"><span class="order-btn">Alerts and Notifications</span></a>
+				</td>
+				<td style="padding-left:20px">
+				<!--	<a href="#/Dashboard"><span class="order-btn">Dashboard</span></a>-->
+					
+						<span ng-repeat="dashboardLink in dashboardLinks">
+							<a href="#/Dashboard/{{dashboardLink}}"><span class="order-btnhome">{{dashboardLink}}</span></a>
+						</span>
+					
+				</td>	
+				
+			</tr>
+		</table>	
+		</fieldset>
+	</div>
+	<div>
+		<fieldset class="fldset-class">
+		<legend class="legend-class">Configuration</legend>
+		<table>
+			<tr>
+				<td>
+					<a href="#/My Dashboard"><span class="order-btn">My Dashboard</span>
+				</td>
+				<td>
+					<a href="asn.html"><span class="order-btn">Admin</span>
+				</td>
+				<td>
+					<a href="asn.html"><span class="order-btn">Defaults</span>
+				</td>	
+			</tr>
+		</table>	
+		</fieldset>
+	</div>
+</div>			
+		
+		
+			
+		
+

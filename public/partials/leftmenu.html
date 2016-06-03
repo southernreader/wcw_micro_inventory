@@ -1,0 +1,23 @@
+ <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+ <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+ <link href="stylesheets/nav.css" rel="stylesheet" type="text/css"/>
+<div class="left-nav">	
+    <div class="site-nav">
+    	<ul>
+	        <li class="tutorials" ng-mouseover="showTutorials()" ng-mouseout="hideTutorials()"><a href="">Tutorials<span class="arrow-icon"><i class="fa fa-caret-right"></i></span></a>
+				<ul ng-show="showtutorials"  class="drop-down">
+					<li class="list-title">Tutorials</li>
+					<li><a ng-click="hideTutorials()" ng-repeat="menu in tutorialmenu" href="">{{menu}}</a></li>
+				</ul>
+			</li>
+			<li  class="articles" ng-mouseover="showArticles()" ng-mouseout="hideArticles()"><a href="">Articles<span class="arrow-icon"><i class="fa fa-caret-right"></i></span></a>
+				<ul ng-show="showarticles" class="drop-down">
+					<li class="list-title">Articles</li>
+					<li><a ng-click="hideArticles()" ng-repeat="menu in articlemenu" href="">{{menu}}</a></li>
+				</ul>
+			</li>
+	    </ul>
+    </div>
+</div>

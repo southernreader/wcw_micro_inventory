@@ -1,0 +1,173 @@
+<!-- <div class="mainhead"> -->
+<div class="superheading3"> <!--<span id="tab">Sales Order</span> --></div> 
+<div class = "ministatement">
+	<div class="col-md-10">
+		<fieldset class="fldset-class">
+		<legend class="legend-class">Search Criteria</legend>
+	
+		<table class="table">
+			<tr>
+				<td tooltip="{{(facilityname)?'Facility Name' : ''}}" tooltip-append-to-body = "true"   class="tooltip.top"> 
+					<input id="facility_name" class="form-control" placeholder="Facitily Name" ng-keyup="complete1()" 
+						ng-model ="facilityname" autofocus/>
+				</td>
+				<td tooltip="{{(orderid)?'Order_ID' : ''}}" tooltip-append-to-body = "true" class="tooltip.top"> 
+					<input id="order_id" class="form-control" placeholder="Order ID" ng-keyup="complete1()" 
+					ng-model ="orderid"
+					autofocus/>
+				</td>
+				<td tooltip="{{(custrefnum)?'Customer Order Ref' : ''}}" tooltip-append-to-body = "true" >
+					<input id="cust_ref_num" class="form-control" placeholder ="Customer Order Ref" ng-keyup="complete2()" 
+					ng-model ="custrefnum"/>
+				</td>
+				<td  tooltip="{{(customer_id)?'Customer ID' : ''}}" tooltip-append-to-body = "true" > <input id="customer_id" class="form-control" placeholder="Customer ID" ng-keyup="complete3()" 
+					ng-model ="customer_id"/>
+				</td>
+				<td  tooltip="{{(data1.singleSelect)?'Order Status' : ''}}" tooltip-append-to-body = "true" > 
+					<select class="form-control" name="singleSelect1" ng-model="data1.singleSelect" >
+						 <option style="display: " value=""> Select Order Status </option>
+			      		 <option ng-repeat="option1 in data1.availableOrder" value="{{option1.id}}">{{option1.name}}</option>
+			   		 </select>	
+				</td>
+			</tr>
+		
+			<tr>
+				<td class="tdre" tooltip="{{(item)?'Item ID' : ''}}" tooltip-append-to-body = "true" >
+				<input id="item_status" class="form-control" placeholder="Item ID" ng-keyup="complete2()" 
+					ng-model ="item"
+					/>
+				</td>
+				
+				<td class="tdre"  tooltip="{{(data2.singleSelect2)?'Filter Options':''}}" tooltip-append-to-body = "true" > 
+				<select class="form-control" name="singleSelect2" ng-model="data2.singleSelect2"
+				ng-options="option2.id as option2.name for option2 in data2.availableOptions" ng-change = "reset()" >
+				<option  value="">Select Filter Option</option> 
+				<option ng-repeat="option2 in data2.availableOptions" value="{{option2.id}}"  ng-change="getwarehouseorders(null)">{{option2.name}}</option> 
+				</select>
+               
+				</td>
+
+				<td class="tdre"  tooltip="{{(filter_Value)?'Filter Value':''}}" tooltip-append-to-body = "true" >
+
+				<input type="text" class="form-control" id="item_status" placeholder="Value" 
+				ng-model ="filter_Value" ng-show="itemStatusShow('alphanumeric')" 
+				ng-disabled="data2.singleSelect2 == null"/>
+
+				<select class="form-control" id="item_status" placeholder="Enter Yes or No"
+				ng-model ="filter_Value" ng-show="itemStatusShow('yesno')"
+				ng-disabled="data2.singleSelect2 == null" ng-options="op.id as op.name for op in data3.selectoptions" >
+				<option value="">Select YES or NO</option>
+			
+				</select>
+
+				<p class="input-group" tooltip="{{(dt)?'From Date':''}}" tooltip-append-to-body = "true" ng-show="itemStatusShow('date')">
+				<input type="text" class="form-control" datepicker-popup="{{format}}" container="body" ng-model="dt" is-open="opened1" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" 
+				placeholder ="From Date"/> 
+				<span class="input-group-btn">
+				<button type="button" class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+				</p>
+
+				</td>
+
+				<td class="tdcal"   > 
+				<p class="input-group" tooltip="{{(dt2)?'To Date':''}}" tooltip-append-to-body = "true" ng-show="itemStatusShow('date')">
+				<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt2" is-open="opened2" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions"  date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" 
+				placeholder ="To Date"/> 
+				<span class="input-group-btn">
+				<button type="button" class="btn btn-default" ng-click="open2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+				</p>
+      
+				</td>
+				<td class="tdcal" > 
+           
+			<!--	<button class="btn btn-secondary" type="submit" ng-click ="getwarehouseorders(null)">Go</button> -->
+				<span class="order-btn-alert" ng-click = "getwarehouseorders(null)" >Go</span>
+				</td>
+			
+				
+					
+			</tr>					
+		</table>
+		<div ng-show="salesOrderFilterFormEmpty" class="alert alert-danger alert-dismissible" role="alert">
+<!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+<p>Please enter filter values</p>
+</div>
+		</fieldset>
+		<div id="scroll-section1">
+		<!--	<div id="credit" class="element-bottomshadow reading-box"> -->
+				<div class="superheading2">Sales Orders</div>
+				<table class="fixed-header table-condensed sales-table">
+					<thead>
+						<tr>
+							<th><b>WH/Store</th>
+							<th><b>Order ID</th>
+							<th><b>Customer Ref #</th>
+							<th><b>Customer</th>
+							<th><b>Status</th>
+							<th><b>Partial Ship</th>
+							<th><b>Order Date</th>
+							<th><b>Order Total</th>
+							<th><b>Carrier</th>
+							<th><b>Service Level</th>
+						</tr>
+					</thead>
+					<tbody>						
+						    <tr ng-repeat="transaction in salesorder | orderBy:'instance.Facility_Name'| orderBy:'instance.Order_ID'" ng-mouseover="displayorderline(transaction.instance.Order_ID)" 
+						    	ng-style="transaction.instance.myStyle">
+								<td style="text-align:center;">{{transaction.instance.Facility_Name}}-{{transaction.instance.Facility_Description}}</td>
+								<td style="text-align:center;"><a ng-click = "gotoordertransactions(transaction.instance.Order_ID)"><b>{{transaction.instance.Order_ID}}</a></td>
+								<td style="text-align:center;">{{transaction.instance.CUST_ORDER_NBR}}</td>
+								<td style="text-align:center;">{{transaction.instance.Customer_ID}}</td>
+								<td style="text-align:center;">{{transaction.instance.Status}}</td>
+								<td style="text-align:center;">{{transaction.instance.Partial_Ship}}</td>
+								<td style="text-align:center;">{{transaction.instance.Order_Created}}</td>	
+								<td style="text-align:center;">{{transaction.instance.Order_Total}}</td>
+								<td style="text-align:center;">{{transaction.instance.Carrier}}</td>
+								<td style="text-align:center;">{{transaction.instance.Service_Level}}</td>
+							</tr>
+					</tbody>
+				</table>
+		<!--	</div>-->
+		</div>
+		<div id="scroll-section1">
+		<!--	<div id="credit" class="element-bottomshadow reading-box"> -->
+				<div class="superheading2"> Sales Order Lines</div>
+				<table class="fixed-header table-condensed order-line">
+					<thead>
+						<tr>
+							<th><b>Order ID</th>
+							<th><b>Item</th>
+							<th><b>Order Qty</th>
+							<th><b>Shipped Qty</th>
+							<th><b>Status</th>
+							<th><b>Shipped Date</th>
+							<th><b>Promise Date</th>
+							<th><b>Modified Date</th>
+							<th><b>Unit Price</th>
+							<th><b>Tracking No</th>
+							<!-- <th><b>Bk Order No</th> -->
+						</tr>
+					</thead>
+					<tbody>				
+						    <tr ng-repeat="transaction in order_line_item |orderBy:'instance.Order_ID'">
+								<td style="text-align:center;">{{selectedorderid}}</td>
+								<td style="text-align:center;"><a ng-click = "gotoorderlinetransactions(transaction.Item_ID)"><b>{{transaction.Item_ID}}</b></td>
+								<td style="text-align:center;">{{transaction.Ordered_QTY}}</td>
+								<td style="text-align:center;">{{transaction.Shipped_Qty}}</td>
+								<td style="text-align:center;">{{transaction.Order_line_Status}}</td>
+								<td style="text-align:center;">{{transaction.ActShipmentDate}}</td>	
+								<td style="text-align:center;">{{transaction.Est_Shipment_Date}}</td>
+								<td style="text-align:center;">{{transaction.Order_Line_Modified}}</td>
+								<td style="text-align:center;">{{transaction.Unit_Price}}</td>
+								<td style="text-align:center;">{{transaction.Tracking_Number}}</td>
+								
+							</tr>
+					</tbody>
+				</table>
+		<!--	</div> -->
+		</div>
+	</div>
+</div>
+</div>

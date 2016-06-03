@@ -1,0 +1,55 @@
+<div>
+<div class="superheading3"> <span id="tab">Order Details </span><p></div>
+<div>
+	<div class="col-md-8 col-md-offset-1">
+		<div id="scroll-section">
+			<!--<div class="element-bottomshadow reading-box"> -->
+				<table class="table table-striped table-bordered order-details">
+					<div class="heading5">
+						<font size="4.5">
+							<span style="float:right;"></span>
+						</font>
+						<p>
+					</div>
+					<thead>
+						<tr>
+							<th class="wide"><b>WH/Store</th>
+							<th class="wide1"><b>Order Id</th>
+							<th class="wide2"><b>Customer Ref #</th>
+							<th class="wide1"><b>BOL NBR</th>
+							<th class="wide"><b>DEST ID</th>
+							<th class="wide"><b>Order Total</th>
+							<th class="wide"><b>Order Created</th>
+							<th class="wide"><b>Customer Id</th>
+							<th class="wide"><b>Status</th>
+							<th class="wide"><b>Carrier</th>
+							<th class="wide"><b>Service Level</th>
+							<th class="wide"><b>Partial Ship</th>
+							</tr>
+					</thead>
+					<tbody>				
+						    <tr ng-repeat="transaction in salesorder1" ng-style={{transaction.instance.myStyle}}>
+								<td style="text-align:left;"><b>{{transaction.instance.Facility_Name}}</td>
+								<td style="text-align:left;"><b>{{transaction.instance.Order_ID}}</td>
+								<td style="text-align:left;"><b>{{transaction.instance.CUST_ORDER_NBR}}</td>
+								<td style="text-align:left;"><b>{{transaction.instance.BOL_NBR}}</td>
+								<td style="text-align:left;"><b>{{transaction.instance.DEST_ID}}</td>
+								<td style="text-align:left;"><b>{{transaction.instance.Order_Total}}</td>
+								<td style="text-align:left;"><b>{{transaction.instance.Order_Created}}</td>
+								<td style="text-align:left;"><b>{{transaction.instance.Customer_ID}}</td>
+								<td style="text-align:left;"><b>{{transaction.instance.Status}}</td>
+								<td style="text-align:left;"><b>{{transaction.instance.Carrier}}</td>
+								<td style="text-align:left;"><b>{{transaction.instance.Service_Level}}</td>
+								<td style="text-align:left;"><b>{{transaction.instance.Partial_Ship}}</td>
+							</tr>
+					</tbody>
+				</table>
+				<div>
+				<!--	<img class="shadow" src="/stylesheets/images/button.jpg" ng-click="loadSalesOrder()"/> -->
+						<a href= "/#/Sales Order"><span class="order-btn">Back To Orders</span></a>
+				</div>
+		<!--	</div>-->
+		</div>
+	</div>
+</div>
+</div>

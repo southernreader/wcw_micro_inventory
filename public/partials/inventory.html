@@ -1,0 +1,131 @@
+<div class="superheading3"> <!--<span id="tab">Inventory Search </span>--></div>
+<div class = "ministatement">
+	<div class="col-md-10">
+		<fieldset class="fldset-class">
+		<legend class="legend-class">Search Criteria</legend>
+			<table class="table">
+				<tr>	    
+					<td tooltip="{{(facilityname)?'Facility Name' : ''}}" tooltip-append-to-body = "true"   class="tooltip.top"> 
+						<input id="facility_name" class="form-control" placeholder="Facitily Name" ng-keyup="complete1()" 
+							ng-model ="facilityname"
+							 autofocus/>
+					</td>
+					<td tooltip-append-to-body = "true"> 
+						<input id="item_name"  class="form-control" placeholder ="Item Name" ng-keyup="complete2()" 
+						ng-model ="itemid" tooltip="{{(itemid)?'Item Name' : ''}}"
+						/>
+					</td>
+					<td tooltip="{{(itemstatus)?'Item Status' : ''}}" tooltip-append-to-body = "true" > 
+						<input id="item_status"  class="form-control" placeholder="Item Status" ng-keyup="complete3()" 
+						ng-model ="itemstatus"
+						/>
+					</td>
+					<td> 
+					<select name="singleSelect" class="form-control" ng-model="data.singleSelect" placeholder="Filter Options" ng-change="reset1()">
+				       <option  value="">Select Filter Option</option> 
+					   <option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+				    </select>	
+					</td>
+
+					<td>
+						<input id="item_status"  class="form-control" placeholder="Enter Filter Value" 
+						ng-model ="filter_Value" />
+					</td>
+				</tr>
+				<tr>
+				</table>
+			<!--	<td class="info"> -->
+				<table class="table">
+				<td style="width:530px">
+					<table class="rtd">
+					<tr>
+					<td style="width:160px" class="radio">
+						<div>	
+						<label class="rb">Warehouse</label>
+						</div>
+						<span>
+						<input type="radio"  name="WHSTORE" class="rb"
+						ng-model ="selected" value="Warehouse" ng-change="filter()"/>
+						</span>
+					</td>
+				
+					<td style="width:110px" class="radio">
+						<div>
+						<label class="rb" style="margin-top:15px">Store </label>
+						</div>
+						<span>
+						<input type="radio"  name="WHSTORE" class="rb" style="margin-top:18px"
+						ng-model ="selected" value="Store" ng-change="filter()"/>
+						</span>
+					</td>
+					<td style="width:110px" class="radio">
+						<div>
+						<label class="rb" style="margin-top:15px">Both </label>
+						</div>
+						<span>
+						<input type="radio"  name="WHSTORE" class="rb" style="margin-top:18px"
+						ng-model ="selected" value="WHST" ng-change="filter()"/>
+						</span>
+					</td>
+					</tr>
+					</table>
+				</td>
+				<td style="width:400px"class=""> 
+						<label class="hotinv" style="margin-top:15px" >Hot Inventory  </label>
+						<input type="checkbox" ng-model="checked" ng-change="showHotInventory()" id="ng-change-example1" />
+				</td>
+				<td>
+					<!--	<button class="btn btn-secondary" style="margin-top:5px" type="button" ng-click = "getwarehouseinventory(null)">Go</button>	-->
+					<span class="order-btn-inv" ng-click = "getwarehouseinventory(null)" >Go</span>
+				</td>
+				</tr>					
+			</table>
+			<div ng-show="inventoryFilterFormEmpty" class="alert alert-danger" role="alert">
+			<!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+			<p>Please enter filter values</p>
+			</div>
+		</fieldset>
+		<table id="table-responsive">
+		<!--	<div id="scroll-section">-->
+				<table id="invtbl" class="table-condensed fixed-header1 inventory-table">
+					<thead>
+						<tr>
+							<th><b>WH/Store</th>
+							<th><b>Item Description</th>
+							<th><b>SOH</th>
+							<th><b>Available</th>
+							<th><b>Hold</th>
+							<th><b>Damaged</th>
+							<th><b>QA</th>
+							<th><b>Alloc</th>
+							<th><b>RCV Stage</th>
+							<th><b>In Transit</th>
+						</tr>
+					</thead>
+					<tbody>			
+						  <!--  <tr ng-repeat="transaction in inventory" ng-style={{transaction.instance.myStyle}}> -->
+								<tr ng-repeat="transaction in inventory  | orderBy:'instance.Facility_Name'" ng-style={{transaction.instance.myStyle}}>
+								<td style="text-align:left"><b>{{transaction.instance.Facility_Name}}-{{transaction.instance.Facility_Description}}</td>
+								<td style="text-align:left"><b>{{transaction.instance.Item_ID}}-{{transaction.instance.Item_Description}}</td>
+								<td style="text-align:left">
+									<a>
+										<b>{{transaction.instance.SOH}} 
+									</a>
+								</td>
+								<td style="text-align:left"><u><a ng-click="gototransactions(transaction.instance.Facility_Name,transaction.instance.Item_ID,transaction.instance.Status[0].Status)"><b>{{transaction.instance.Status[0].Qty}}</a></u></td>
+								<td style="text-align:left"><u><a ng-click="gototransactions(transaction.instance.Facility_Name,transaction.instance.Item_ID,transaction.instance.Status[5].Status)"><b>{{transaction.instance.Status[5].Qty}}</a></u></td>
+								<td style="text-align:left"><u><a ng-click="gototransactions(transaction.instance.Facility_Name,transaction.instance.Item_ID,transaction.instance.Status[1].Status)"><b>{{transaction.instance.Status[1].Qty}}</a></u></td>
+								<td style="text-align:left"><u><a ng-click="gototransactions(transaction.instance.Facility_Name,transaction.instance.Item_ID,transaction.instance.Status[3].Status)"><b>{{transaction.instance.Status[3].Qty}}</a></u></td>
+								<td style="text-align:left"><u><a ng-click="gototransactions(transaction.instance.Facility_Name,transaction.instance.Item_ID,transaction.instance.Status[4].Status)"><b>{{transaction.instance.Status[4].Qty}}</a></u></td>	
+								<td style="text-align:left"><u><a ng-click="gototransactions(transaction.instance.Facility_Name,transaction.instance.Item_ID,transaction.instance.Status[2].Status)"><b>{{transaction.instance.Status[2].Qty}}</a></u></td>
+								<td style="text-align:left"><u><a ng-click="gototransactions(transaction.instance.Facility_Name,transaction.instance.Item_ID,transaction.instance.Status[6].Status)"><b>{{transaction.instance.Status[6].Qty}}</a></u></td>
+							</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div>
+    <a id="btnExport"><span class="order-btn">Export to Excel</span></a>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div > <span id="tab">Inventory Search </span><p></div>
+<div ></div>
+<div >
+	<div>
+			<table>
+			<tr>
+				<td> <label for="tags">Facility &nbsp&nbsp&nbsp<input id="facility_name" placeholder="Facitily Name to Search" ng-keyup="complete1()" 
+					ng-model ="facilityname" 
+					ng-keydown="getwarehouseinventory($event)" autofocus/></label>
+				</td>
+				<td> <label for="tags">Item &nbsp&nbsp&nbsp<input id="item_name" placeholder ="Item Name to Search" ng-keyup="complete2()" 
+					ng-model ="itemid"
+					ng-keydown="getwarehouseinventory($event)"/></label>
+				</td>
+				<td> <label for="tags">Location &nbsp&nbsp&nbsp <input id="item_status" placeholder="Location to Search" ng-keyup="complete3()" 
+					ng-model ="itemlocation"
+					ng-keydown="getwarehouseinventory($event)"/></label>
+				</td>
+				<td> <label for="tags">SO/PO/ASN &nbsp&nbsp&nbsp<input id="order_id" placeholder="Order ID/PO/ASN to Search"
+					ng-model ="orderid"
+					ng-keydown="getwarehouseinventory($event)"/></label>
+				</td>
+			</tr>
+			<tr>
+			<span>
+				<td> 
+				<label>Warehouse 
+				<input id="WH" type="radio"  name="WHSTORE"
+					ng-model ="selected" value="WH" ng-change="filter()"/></label>
+				</td>
+				<td> 
+				<label>Store 
+				<input id="ST" type="radio"  name="WHSTORE"
+					ng-model ="selected" value="ST" ng-change="filter()"/></label>
+				</td>
+				<td> 
+				<label>Both 
+				<input id="WHST" type="radio" name="WHSTORE"
+					ng-model ="selected" value="WHST" ng-change="filter()"/></label>
+				</td>
+			</span>
+				<td> <label for="tags">Item Status &nbsp&nbsp&nbsp <input id="item_status" placeholder="Status to Search" ng-keyup="complete3()" 
+					ng-model ="itemstatus"
+					ng-keydown="getwarehouseinventory($event)"/></label>
+				</td>
+				<td> 
+				<label for="tags">Hot Inventory  
+				<input type="checkbox" ng-model="checked" ng-change="showHotInventory()" id="ng-change-example1" /></label>
+				</td>								
+			</tr>
+		</table>
+		<div id="scroll-section">
+			<div id="credit">
+				<table class="table table-striped table-bordered">
+					<div class="heading5">
+						<font size="4.5">
+							<span style="float:right;"></span>
+						</font>
+						<p>
+					</div>
+					
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

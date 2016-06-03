@@ -1,0 +1,39 @@
+<div class="superheading3"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp   <span id="tab">Payment Instructions </tab><p></div>
+<div class = "ministatement">
+	<div class="col-md-8 col-md-offset-1">
+		<div id="scroll-section">
+			<div id="credit">
+				<!-- <div class="heading" style="display: block; height: 25px; text-align:center"><font size="4">UBS Details</font><p></div> -->
+				<table class="table table-striped table-bordered">
+					<div class="heading5">
+						<font size="4.5">Transaction Date: {{traxn_date}}
+						    <span style="float:right;">Debtor A/C # {{debtor_ac_number}}</span>
+						</font>
+						<p>
+					</div>
+					<thead>
+						<tr>
+							<th><b>Transaction #</th>
+							<th><b>Sum &#128</th>
+							<th><b>Status</th>
+							<th><b>Reason for Failure</th>
+						</tr>
+					</thead>
+					<tbody>				
+						    <tr ng-repeat="transaction in payments[0].instance.CdtTrfTxInf">
+								<td><b>{{transaction.PmtId.InstrId}}</td>
+								<td><b>{{transaction.Amt.InstdAmt.__text}}</td>
+								<td><b>{{transaction.Status}}</td>
+								<td><b>None</td>
+							</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class ="pagination">
+			<a href="" ng-click="previousSavingsPage()">« Previous</a>
+			<!-- 					<input class="pageNo" value="{{currentSavingsPage}}"/>
+			-->					<a href="" ng-click="nextSavingsPage()">Next »</a>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,127 @@
+
+<carousel class="slides_control" >	
+				
+			 <slide ng-repeat="label in chartOptions | myFilter" active="slide.active" >	
+			  <table class="table table-condensed ">
+			<!--  <thead >
+						<tr>
+							<th style="text-align: center;"><b>ASN Statsu</th>
+							<th style="text-align: center;"><b>Purchase Orders</th>
+							<th style="text-align: center;"><b>PUTAWAY</th>
+							
+						</tr>
+					</thead>-->
+					<tbody>
+	  <tr>
+	  <td class="info">
+			    <div class="newclass" id={{$index}}>
+     
+		
+			
+			<nvd3 options="chartOptions[$index]" data="dataSet[$index ]"  id=sfsf{{$index}}><svg style="width: 400px; height: 200px;" ></nvd3>
+			
+			
+			
+			
+	  </div>
+	  </td><td class="info">
+         <div class="newclass">
+    
+	<nvd3 options="chartOptions[$index+1]" data="dataSet[$index + 1]"  id=sfsf{{$index+1}}><svg style="width: 400px; height: 200px;" ></nvd3>
+	
+	</div></td><td class="info">
+	     <div class="newclass">
+     <!-- <nvd3-pie-chart
+            data="secondslides[$index + 2].label"
+            id=labelsfsf{{$index}}
+            showLabels="true"
+            x="xFunction()"
+            y="yFunction()"
+            donut="true"
+			noData="Data aint here"
+            donutRatio="0.25"
+            donutLabelsOutside="true"   
+			margin ="{left:30,top:0,botttom:0,right:150}"
+			>
+               <svg  style="width: 400px; height: 200px; "></svg>  
+         
+    </nvd3-pie-chart>-->
+	
+	<nvd3 options="chartOptions[$index+2]" data="dataSet[$index+2]"  id=sfsf{{$index+2}}><svg style="width: 400px; height: 200px;" ></nvd3>
+	
+	</div></td>
+	
+	
+	
+	</tr></table>
+	</tbody>
+	       </slide>
+      </carousel>
+      
+	 
+
+
+
+      
+
+
+
+
+
+
+    
+	<!--<div id="scroll-dashboard">
+			<div id="credit" class="">
+				<div my-scroll datalist="items"></div>
+
+			</div> 
+
+
+
+
+		</div> -->
+		
+		
+		
+		
+
+<!--<div class="col-md-12 text-center"><h3>Product Carousel</h3></div>-->
+
+<!--<div class="col-md-6 col-md-offset-3">
+<div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel">
+  <div class="carousel-inner">
+    <div class="item active">
+      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=1" class="img-responsive"></a></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e477e4/fff&amp;text=2" class="img-responsive"></a></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/eeeeee&amp;text=3" class="img-responsive"></a></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f4f4f4&amp;text=4" class="img-responsive"></a></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f566f5/333&amp;text=5" class="img-responsive"></a></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f477f4/fff&amp;text=6" class="img-responsive"></a></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/eeeeee&amp;text=7" class="img-responsive"></a></div>
+    </div>
+    <div class="item">
+      <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/fcfcfc/333&amp;text=8" class="img-responsive"></a></div>
+    </div>
+  </div>
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+</div>
+</div>-->
+
+
+
+		
+		
+		

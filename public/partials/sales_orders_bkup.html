@@ -1,0 +1,146 @@
+<!-- <div class="mainhead"> -->
+<div class="superheading3"> <span id="tab">Sales Order</span></div> 
+<div class = "ministatement">
+	<div class="col-md-8 col-md-offset-1">
+		<fieldset class="fldset-class">
+		<legend class="legend-class">Search Criteria</legend>
+		<table class="table">
+			<tr>
+				<td data-tip="Order ID"> <input id="order_id" class="form-control" placeholder="Order ID" ng-keyup="complete1()" ng-model ="orderid"
+					ng-keydown="getwarehouseorders($event)" autofocus/>
+				</td>
+				<td data-tip="Customer Order Ref"><input id="cust_ref_num" class="form-control" placeholder ="Customer Order Ref" ng-keyup="complete2()" 
+					ng-model ="custrefnum"
+					ng-keydown="getwarehouseorders($event)"/>
+				</td>
+				<td  data-tip="Customer ID"> <input id="customer_id" class="form-control" placeholder="Customer ID" ng-keyup="complete3()" 
+					ng-model ="customer_id"
+					ng-keydown="getwarehouseorders($event)"/>
+				</td>
+				<td  data-tip="Order Status"> 
+					<select class="form-control" name="singleSelect1" ng-model="data1.singleSelect1" ng-click="getwarehouseorders($event)" >
+						 <option style="display: " value=""> Select Order Status </option>
+			      		 <option ng-repeat="option1 in data1.availableOrder" value="{{option1.id}}">{{option1.name}}</option>
+			   		 </select>	
+				</td>
+			</tr>
+		
+			<tr>
+				<td class="tdre" data-tip="Item ID"><input id="item_status" class="form-control" placeholder="Item ID" ng-keyup="complete3()" 
+					ng-model ="item"
+					ng-keydown="getwarehouseorders($event)"/>
+				</td>
+
+				<td class="tdcal"  data-tip="Shipped Date"> 
+		            <p class="input-group">
+		              <input type="text" class="form-control" datepicker-popup="{{format}}" container="body" ng-model="dt" is-open="opened1" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" 
+		              placeholder ="Ordered Date"/> 
+		              <span class="input-group-btn">
+		                <button type="button" class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+		              </span>
+		            </p>
+		       
+				</td>	
+				<td class="tdcal"  data-tip="Order Date"> 
+				
+		            <p class="input-group">
+		              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt2" is-open="opened2" min-date="minDate" max-date="'2020-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" 
+		              placeholder ="Shipped Date"/> 
+		              <span class="input-group-btn">
+		                <button type="button" class="btn btn-default" ng-click="open2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+		              </span>
+		            </p>
+		      
+				</td>	
+				<td class="tdre"  data-tip="Filter Options"> 
+				
+				<select class="form-control" name="singleSelect2" ng-model="data2.singleSelect2" ng-options="option2.id as option2.name for option2 in data2.availableOptions">
+				<option  value="">Select Filter Option</option> 
+			    <option ng-repeat="option2 in data2.availableOptions" value="{{option2.id}}"  ng-change="getwarehouseorders(null)">{{option2.name}}</option> 
+			    </select>
+               
+				</td>	
+				<td class="tdre"  data-tip="Filter Value for {{data2.singleSelect2}}">
+				<input type="text" class="form-control" id="item_status" placeholder="{{YesOrNo}}"
+					ng-model ="filter_Value" ng-keydown="getwarehouseorders($event)" ng-disabled="data2.singleSelect2 == null"/>
+				
+				</td>	
+			</tr>					
+		</table>
+		</fieldset>
+		<div id="scroll-section">
+			<div id="credit" class="element-bottomshadow reading-box">
+				<div class="superheading2">Orders</div>
+				<table class="scrollable table-condensed table-bordered">
+					<thead>
+						<tr>
+							<th><b>WH/Store</th>
+							<th><b>Order ID</th>
+							<th><b>Customer Ref #</th>
+							<th><b>Customer</th>
+							<th><b>Status</th>
+							<th><b>Partial Ship</th>
+							<th><b>Order Date</th>
+							<th><b>Order Total</th>
+							<th><b>Carrier</th>
+							<th><b>Service Level</th>
+						</tr>
+					</thead>
+					<tbody>						
+						    <tr ng-repeat="transaction in salesorder" ng-mouseover="displayorderline(transaction.instance.Order_ID)" 
+						    	ng-style=transaction.instance.myStyle>
+								<td>{{transaction.instance.Facility_Name}}</td>
+								<td>{{transaction.instance.Order_ID}}</td>
+								<td>{{transaction.instance.CUST_ORDER_NBR}}</td>
+								<td>{{transaction.instance.Customer_ID}}</td>
+								<td>{{transaction.instance.Status}}</td>
+								<td>{{transaction.instance.Partial_Ship}}</td>
+								<td>{{transaction.instance.Order_Created}}</td>	
+								<td>{{transaction.instance.Order_Total}}</td>
+								<td>{{transaction.instance.Carrier}}</td>
+								<td>{{transaction.instance.Service_Level}}</td>
+							</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="scroll-section">
+			<div id="credit" class="element-bottomshadow reading-box">
+				<div class="superheading2">Order Lines</div>
+				<table class="scrollable table-condensed table-bordered">
+					<thead>
+						<tr>
+							<th><b>Order ID</th>
+							<th><b>Item</th>
+							<th><b>Order Qty</th>
+							<th><b>Shipped City</th>
+							<th><b>Status</th>
+							<th><b>Shipped Date</th>
+							<th><b>Promise Date</th>
+							<th><b>Modified Date</th>
+							<th><b>Unit Price</th>
+							<th><b>Tracking No</th>
+							<!-- <th><b>Bk Order No</th> -->
+						</tr>
+					</thead>
+					<tbody>				
+						    <tr ng-repeat="transaction in order_line_item">
+								<td>{{selectedorderid}}</td>
+								<td>{{transaction.Item_ID}}</td>
+								<td>{{transaction.Ordered_QTY}}</td>
+								<td>{{transaction.Shipped_Qty}}</td>
+								<td>{{transaction.Order_line_Status}}</td>
+								<td>{{transaction.ActShipmentDate}}</td>	
+								<td>{{transaction.Est_Shipment_Date}}</td>
+								<td>{{transaction.Order_Line_Modified}}</td>
+								<td>{{transaction.Unit_Price}}</td>
+								<td>{{transaction.Tracking_Number}}</td>
+								
+							</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

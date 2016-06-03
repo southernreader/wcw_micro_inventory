@@ -1,0 +1,114 @@
+<div class="superheading3"> <!--<span id="tab">Inventory Search </span>--></div>
+<div class = "ministatement">
+
+
+	<div class="col-md-8 col-md-offset-1">
+		<fieldset class="fldset-class-alert">
+		<legend class="legend-class">Search Criteria</legend>
+			<table class="table">
+				<tr>	    
+					<td tooltip="{{(facilityname)?'Facility Name' : ''}}" tooltip-append-to-body = "true"   class="tooltip.top"> 
+						<input id="facility_name" class="form-control" placeholder="Facitily Name" ng-keyup="complete1()" 
+							ng-model ="facilityname"
+							 autofocus/>
+					</td>
+					<td tooltip-append-to-body = "true"> 
+						<select name="alertFunction"  class="form-control" placeholder ="Function" ng-keyup="complete2()" 
+						ng-model ="alertStatus" >
+						<option  value="">Select Function</option>
+						<option ng-repeat="option in alertstatus.alertStatusOptions" value="{{option.name}}">{{option.name}}</option>
+						</select>
+					</td>
+					<td tooltip="{{(alertid)?'Alert Id' : ''}}" tooltip-append-to-body = "true" > 
+						<input id="item_status"  class="form-control" placeholder="Alert ID" ng-keyup="complete3()" 
+						ng-model ="alertid"
+						/>
+					</td>
+					<td> 
+					<select name="alertSelect" class="form-control" ng-model="alertSelect" placeholder="Alert Type" ng-change="reset1()">
+				       <option  value="">Select Alert Type</option> 
+					   <p>ALERT SELECT{{data.alertSelect}}</p>
+					   <option ng-repeat="option in alertdata.alertOptions" value="{{option.name}}">{{option.name}}</option>
+				    </select>	
+					</td>
+				</tr>
+				
+			<!--	<td class="info"> -->
+			
+					<tr>
+					
+					<td > 
+					<select name="singleSelect" class="form-control" ng-model="singleSelect" placeholder="Alert Type" ng-change="reset1()">
+				       <option  value="">Select Filter Option</option> 
+					   <option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+				    </select>	
+					</td>	
+					<td tooltip="{{(filtervalue)?'Filter Value' : ''}}" tooltip-append-to-body = "true" > 
+						<input id="item_status"  class="form-control" placeholder="Filter Value" ng-keyup="complete3()" 
+						ng-model ="filtervalue"
+						/>
+					</td>
+					<td></td>
+					<td ><span class="order-btn-alert" ng-click = "getAlertsData(null)">Go</span> </td>	
+					
+					</tr>
+				</table>
+			<div ng-show="alertFilterFormEmpty" class="alert alert-danger" role="alert">
+			<!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+			<p>Please enter filter values</p>
+			</div>
+		</fieldset>
+		<table class="table-condensed fixed-header-alert alert-table">
+					<thead>
+						<tr>
+							<th><b>Alert Id</th>
+							<th><b>Alert Type</th>
+							<th><b>Function</th>
+							<th><b>Service</th>
+							<th><b>Message</th>
+							<th><b>Select</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="transaction in alertitems" ng-if="transaction.Ack==false">
+							<td style="text-align:center">{{transaction.Alert_Id}}</td>        
+							<td style="text-align:center">{{transaction.Alert_Type}}</td>        
+							<td style="text-align:center">{{transaction.Function}}</td>        
+							<td style="text-align:center">{{transaction.Service}}</td>
+							<td style="text-align:center">{{transaction.Alert_Message}}</td>
+							<!--<td><input type="checkbox" ng-click= "ackpush()" ng-model="alertcheck" ng-true-value = "'YES'" ng-false-value = "'NO'"</td>-->
+							<td style="text-align:center"><input type="checkbox" ng-click= "ackpush()" ng-model="transaction.alertcheck" 
+							ng-true-value = "YES" ng-false-value = "NO"</td>
+						</tr>
+					</tbody>
+				</table>	
+				<div> 
+				<span class="order-btn-alert" ng-click = "alertAck();getAlertsData(null)">Acknowledge</span> 
+				</div>
+		<!--<div>
+		<table>
+		<tr>
+		<td class="alert">
+		<ul class="critical">
+			
+			<li style="border-bottom:#C0C0C0 1px solid" ng-repeat="item in items" ng-if="item.type =='Critical'" ng-click="alertType(item.alert_type,item.value,item.alert_id,item.facility_id)"><p>{{item.message}}</p></li>
+		</ul>
+		<ul class="medium">
+			<li style="border-bottom:#C0C0C0 1px solid" ng-repeat="item in items" ng-if="item.type == 'Medium'" ng-click="alertType(item.alert_type,item.value,item.alert_id,item.facility_id)"> <p>{{item.message}}</p></li>
+		</ul>
+		<ul class="normal">
+			<li style="border-bottom:#C0C0C0 1px solid" ng-repeat="item in items" ng-if="item.type == 'Normal'" ng-click="alertType(item.alert_type,item.value,item.alert_id,item.facility_id)"> <p>{{item.message}}</p></li>
+		</ul>
+		<ul>
+			<li ng-if="item.length == '0'"><p>No Alerts</p></li>
+		</ul>	
+		</td>
+		</tr>
+		</table>
+	</div>-->
+		
+		</div>
+	</div>
+	
+
+</div>

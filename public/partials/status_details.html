@@ -1,0 +1,47 @@
+<div>
+<div class="superheading3"> <span id="tab">Inventory Status - {{modal_status}} </span><p></div>
+<div>
+	<div class="col-md-8 col-md-offset-1">
+		<div id="scroll-section">
+			<!--<div class="element-bottomshadow reading-box"> -->
+				<table class="table table-striped table-bordered status-details">
+					<div class="heading5">
+						<font size="4.5">
+							<span style="float:right;"></span>
+						</font>
+						<p>
+					</div>
+					<thead>
+						<tr>
+							<th class="wide"><b>WH/Store</th>
+							<th class="wide1"><b>Item Description</th>
+							<th class="wide2"><b>{{modal_status}}</th>
+							<th class="wide1"><b>Location</th>
+							<th class="wide"><b>Lot #</th>
+							<th class="wide"><b>Distro Number</th>
+							<th class="wide"><b>PO Nbr</th>
+							<th class="wide"><b>ASN Nbr</th>
+							</tr>
+					</thead>
+					<tbody>				
+						    <tr ng-repeat="transaction in status_inventory" ng-if="transaction.instance.Status[index].Qty != 0"ng-style={{transaction.instance.myStyle}}>
+								<td style="text-align:left;"><b>{{transaction.instance.Facility_Name}}-{{transaction.instance.Facility_Description}}</td>
+								<td style="text-align:left;"><b>{{transaction.instance.Item_ID}}-{{transaction.instance.Item_Description}}</td>
+								<td style="text-align:left;"><b>{{transaction.instance.Status[index].Qty}} </a></td>
+								<td style="text-align:left;"><b>{{transaction.instance.Location_ID}}</a></td>
+								<td style="text-align:left;"><b>{{transaction.instance.Lot_Number}}</a></td>
+								<td style="text-align:left;"><b>{{transaction.instance.Distro_Number}}</a></td>
+								<td style="text-align:left;"><b>{{transaction.instance.PO_Number}}</td>
+								<td style="text-align:left;"><b>{{transaction.instance.ASN_Number}}</td>
+							</tr>
+					</tbody>
+				</table>
+				<div>
+					<!--<img class="shadow" src="/stylesheets/images/button.jpg" ng-click="loadInventory()"/>-->
+					<a href= "/#/Inventory"><span class="order-btn">Back To Inventory</span></a>
+				</div>
+		<!--	</div>-->
+		</div>
+	</div>
+</div>
+</div>
