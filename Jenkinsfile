@@ -20,7 +20,7 @@ node {
    // Run the maven build.
    
    //sh "${mvnHome}/bin/mvn release:update-versions -DautoVersionSubmodules=true"
-   //sh "${mvnHome}/bin/mvn release:prepare"
+   //sh "${mvnHome}/bin/mvn release:prepare"..
   
   stage 'Update Nexus'
   
