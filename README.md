@@ -1,2 +1,2 @@
 # wcw_micro_inventory ...
-Aviva Demo3.0
+Aviva Demo3.1 Manual Release
