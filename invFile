@@ -1,7 +1,10 @@
 {
-    "id": "wcw-inv",
-    "application": "Warehouse-Application",
-    "accesspoint": "http://172.31.0.233:8080",
+    "servicename": "wcw-inv",
+    "component": "nodejs",
+     "project": "coe",
+    "projectbpid": 218,
+    "name": "Warehouse-Application",
+    "accesspoint": "http://52.2.195.188:8080",
     "containers": [
         {"name": "mongo", "replicas": 1, "cpu": 1100, "memory": "170M", "port": 30070},
         {"name": "mongods1", "replicas": 1, "cpu": 1100, "memory": "170M", "port": 30073},
